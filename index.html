@@ -33,20 +33,20 @@
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">
           <a class="navbar-brand text-center w-100 text-white" href="#">
             <img src="images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                    German Alejandro Castellanos Marin 
+                    Equipo Metodos Numericos 
           </a>      
       </nav>
     </div>
     <!-- Fin Menú de navegación -->
     <!-- Sección Slider -->
-    <div class="container-fluid slider text-white d-flex flex-column justify-content-center align-items-center">
+    <div class="container-fluid slider text-white text-center d-flex flex-column justify-content-center align-items-center">
       <div class="text-center">
-        <h3 class="hidden-xs-down">Productos de aprendizaje</h3>
-        <h1 class="display-4">Estructura de Base de Datos</h1>
-        <p class="lead hidden-xs-down">Correo Electronico:</p>
-      </div>
-      <div class="form-group mr-3">
-        <a href="#" style="font-size: 25px;color: white;"> germal150@hotmail.com </a>
+        <h1 class="display-4">Metodos Numericos</h1>
+        <h3 class="text-center">Integrantes:</h3>
+          German Alejandro Castellanos Marin <br>
+          Wiliam Sanchez <br>
+          Andrea Lizeth <br>
+          Juan Ramon Lopez Dia
       </div>
     </div>
     <!-- Fin Sección Slider -->
@@ -98,8 +98,8 @@
                   <p v-html="descripcion"></p>
                   <h3>Temas:</h3>
                   <ul>
-                    <li v-html="tema1"></li>
-                    <li v-html="tema2"></li>
+                    <li v-html="tema1">
+                    <li v-html="tema2">
                   </ul>
                 </div>
               </div>
@@ -115,8 +115,8 @@
                   <p v-html="descripcion"></p>
                   <h3>Temas:</h3>
                   <ul>
-                    <li v-html="tema1"></li>
-                    <li v-html="tema2"></li>
+                    <li v-html="tema1">
+                    <li v-html="tema2">
                   </ul>
                 </div>
               </div>            
@@ -130,8 +130,8 @@
                   <p v-html="descripcion"></p>
                   <h3>Temas:</h3>
                   <ul>
-                    <li v-html="tema1"></li>
-                    <li v-html="tema2"></li>
+                    <li v-html="tema1">
+                    <li v-html="tema2">
                   </ul>
                 </div>
               </div>              
@@ -168,7 +168,7 @@
                 <div class="form-group col-6">
                   <label for="Descripcion">Lista de Competencias</label>
                   <ul>
-                    <li v-for="c in lista">{{c.Competencia}}</li>
+                    <li v-for="c in lista">{{c.Competencia}}
                   </ul>
                 </div>
 
@@ -296,15 +296,15 @@
                   <span aria-hidden="true">&laquo;</span>
                   <span class="sr-only">Previous</span>
                 </a>
-              </li>
-              <li  v-for="element,index in lista" class="page-item"><a style="cursor: pointer;" href="#"  @click="setCompetencia(index)" class="page-link" >{{index+1}}</a></li>
+              
+              <li  v-for="element,index in lista" class="page-item"><a style="cursor: pointer;" href="#"  @click="setCompetencia(index)" class="page-link" >{{index+1}}</a>
 
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                   <span class="sr-only">Next</span>
                 </a>
-              </li>
+              
             </ul>
           </nav>     
         </div>
@@ -358,7 +358,7 @@
         $('#loadingModal').modal('show')
     });
 
-    var PasswordToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6ImxvbWlzbW94ZDEyMyJ9.pR4pp8WzH4JwnchLvcwij8_Rm2nlFlyAf185oiBrMq4';
+    var PasswordToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IkVxdWlwb01OMTI0MyJ9.gLo1s3X6mCyF-bodZqPhnzUg6i4hUIAnnXJBTT1Gfgg';
 
     var app = new Vue({
       el: '#app',
