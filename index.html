@@ -88,7 +88,7 @@
             </div>
             <div class="modal-body">
 
-              <div v-if="!video && !archivo" class="row">
+              <div v-if="!video && !archivo && !program" class="row">
                 <div class="col-8">
                   <img :src="imagen" class="img-fluid">
                   <p v-html="fecha" class="text-center"></p>
@@ -124,6 +124,21 @@
               <div v-if="archivo" class="row justify-content-center">
                 <div class="col-8 text-center">
                  <iframe :src="archivo" style="height:700px;" class="w-100" frameborder="0"></iframe>
+                </div>
+                <div class="col-4">
+                  <h3>Descripcion</h3>
+                  <p v-html="descripcion"></p>
+                  <h3>Temas:</h3>
+                  <ul>
+                    <li v-html="tema1">
+                    <li v-html="tema2">
+                  </ul>
+                </div>
+              </div>  
+              
+              <div v-if="program" class="row justify-content-center">
+                <div class="col-8 text-center">
+                  <component :is="program"></component>
                 </div>
                 <div class="col-4">
                   <h3>Descripcion</h3>
@@ -189,6 +204,10 @@
                   <input type="text" class="form-control" v-model="fecha" id="Fecha" placeholder="Fecha">
                 </div>
                 <div class="form-group col-6">
+                  <label for="exampleInputPassword1">program</label>
+                  <input type="text" v-model="program" class="form-control" id="program" placeholder="program">
+                </div>
+                <div class="form-group col-6">
                   <label for="exampleInputPassword1">Foto</label>
                   <input type="text" v-model="imagen" class="form-control" id="Foto" placeholder="Foto">
                 </div>
@@ -241,7 +260,7 @@
                     <a href="#"><span v-html="l.tema1" class="badge badge-danger text-uppercase">.</span></a>
                     <a href="#"><span v-html="l.tema2" class="badge badge-primary text-uppercase">.</span></a>
                     <p v-html="l.Desc">.</p>
-                    <a href="#" class="btn btn-outline-warning btn-sm" @click="mostrarInfo(l.fecha,l.Titulo,l.Desc,l.foto,l.video,l.archivo,l.tema1,l.tema2)" data-toggle="modal" data-target="#PA">Leer más...</a>
+                    <a href="#" class="btn btn-outline-warning btn-sm" @click="mostrarInfo(l.fecha,l.Titulo,l.Desc,l.foto,l.video,l.archivo,l.program,l.tema1,l.tema2)" data-toggle="modal" data-target="#PA">Leer más...</a>
                   </div>
                 </div>
                 
@@ -328,15 +347,15 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="js/vue.js"></script>
-    
+    <script src="components/gauss_interfaz.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-        <script src="js/jwt-decode.min.js"></script>
+    <script src="js/jwt-decode.min.js"></script>
 
     <script>
-    console.log
+
     var firebaseConfig = {
       apiKey: "AIzaSyBIbJZPYRWUEOVHmBp8TWszkQWN20aROiM",
       authDomain: "pas-estructura-de-datos.firebaseapp.com",
@@ -369,6 +388,7 @@
         Titulo:"",
         video:"",
         archivo:"",
+        program:"",
         descripcion:"",
         imagen:"",
         tema1:"",
@@ -401,18 +421,18 @@
         }
         
         this.setCompetencia(0)
-
-        console.log("ya cargo")
         $('#loadingModal').modal('hide')
 
       },
       methods:{
-        mostrarInfo(fecha,titulo,descripcion,imagen,video,archivo,tema1,tema2){
+        mostrarInfo(fecha,titulo,descripcion,imagen,video,archivo,program,tema1,tema2){
+
           this.Titulo = titulo
           this.descripcion = descripcion
           this.imagen = imagen          
           this.video = video
           this.archivo = archivo
+          this.program = program
           this.tema1 = tema1
           this.tema2 = tema2
         },
@@ -439,12 +459,16 @@
           if(!this.video){
             this.video = false
           }
+          if(this.program == ""){
+            this.program = false
+          }
           db.collection("PA's").doc(this.Inputcompetencia).collection("PA's").add({
             Desc: this.descripcion,
             Titulo: this.Titulo,
             archivo: this.archivo,
             fecha: this.fecha,
             foto: this.imagen,
+            program:this.program,
             tema1: this.tema1,
             tema2:this.tema2,
             video:this.video,
