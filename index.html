@@ -355,7 +355,18 @@
     <script src="js/jwt-decode.min.js"></script>
 
     <script>
+      
+    var delayInMilliseconds = 2000; //1 second
 
+    setTimeout(function() {
+      //your code to be executed after 1 second
+    }, delayInMilliseconds);
+      
+    $(".row").fadeIn(delayInMilliseconds);
+  
+    
+      
+      
     var firebaseConfig = {
       apiKey: "AIzaSyBIbJZPYRWUEOVHmBp8TWszkQWN20aROiM",
       authDomain: "pas-estructura-de-datos.firebaseapp.com",
